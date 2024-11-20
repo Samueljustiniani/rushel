@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const path = require('path');
 const app = express();
-const ip = '34.199.28.49';
+const fs = require('fs');
+const ip = 'localhost';
 const port = 3000;
 
 // Configuración de middleware
@@ -24,6 +25,7 @@ let pool = mysql.createPool({
     queueLimit: 0
 });
 
+
 // Manejo de la solicitud POST del formulario
 app.post('/submit-form', (req, res) => {
     const { nombres, apellidos, correo, telefono, seleccion_objetos, comentario } = req.body;
@@ -32,21 +34,15 @@ app.post('/submit-form', (req, res) => {
     pool.query(query, [nombres, apellidos, correo, telefono, seleccion_objetos, comentario], (err, result) => {
         if (err) {
             console.error('Error al insertar datos: ' + err.stack);
-             res.status(500).send('Ocurrió un error al procesar tu donacion.');
-             return
+            res.status(500).send('Ocurrió un error al procesar tu donación.');
+            return;
         }
-        const htmlPath = path.join(__dirname,'index.html');
-        fs.readFile(htmlPath, 'utf8', (err, data) => {
-            if (err) {
-                console.error('Error al leer el archivo HTML: ' + err);
-                res.status(500).send('Ocurrió un error al procesar tu consulta.');
-                return;
-            }
-            res.send(data);
-        });
-        
+
+        // Redirigir al index.html después de un envío exitoso
+        res.redirect('/');
     });
 });
+
 
 // Página principal
 app.get('/', (req, res) => {
