@@ -32,10 +32,19 @@ app.post('/submit-form', (req, res) => {
     pool.query(query, [nombres, apellidos, correo, telefono, seleccion_objetos, comentario], (err, result) => {
         if (err) {
             console.error('Error al insertar datos: ' + err.stack);
-            return res.status(500).send('Ocurrió un error al procesar tu donacion.');
+             res.status(500).send('Ocurrió un error al procesar tu donacion.');
+             return
         }
-        // Enviar una respuesta de éxito
-        res.status(200).send('donacion registrada exitosamente');
+        const htmlPath = path.join(__dirname,'index.html');
+        fs.readFile(htmlPath, 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error al leer el archivo HTML: ' + err);
+                res.status(500).send('Ocurrió un error al procesar tu consulta.');
+                return;
+            }
+            res.send(data);
+        });
+        
     });
 });
 

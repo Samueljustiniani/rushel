@@ -1,58 +1,153 @@
-//checkbox y el cuadro de comentarios
-function toggleComments() {
-  var checkbox = document.getElementById("showComments");
-  var commentsBox = document.getElementById("commentsBox");
+//Validación para formulario
 
-  // Mostrar/ocultar cuadro de comentarios según el estado del checkbox
-  if (checkbox.checked) {
-      commentsBox.style.display = "block";
+const form = document.getElementById("form");
+const username = document.getElementById("username");
+const email = document.getElementById("email");
+//cosnt lastname and phone
+const lastname = document.getElementById("Lastname");
+const phone = document.getElementById("phone");
+const title = document.querySelector(".title");
+const button = document.querySelector("button");
+const message = document.querySelector(".message");
+const donation = document.getElementById("donation");
+
+//! Event listeners for real-time input validation
+username.addEventListener("input", validateUsername);
+
+phone.addEventListener("input", validatePhone);
+lastname.addEventListener("input", validateLastname);
+
+email.addEventListener("input", validateEmail);
+donation.addEventListener("change", validateDonation);
+
+//! Event listener for form submission
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (
+    validateUsername() &&
+    //para validar con exito
+    validateLastname() &&
+    validatePhone() &&
+
+    validateEmail() &&
+    validateDonation()
+
+  ) {
+    submittedForm();
+  }
+});
+
+//! Validation functions
+function validateUsername() {
+  const usernameValue = username.value.trim();
+  const usernameRegex = /^[a-zA-Z\s]+$/; // Solo letras y espacios
+  if (usernameValue === "") {
+    setErrorFor(username, "Nombre no puede estar en blanco");
+    return false;
+  } else if (!usernameRegex.test(usernameValue)) {
+    setErrorFor(username, "Nombre solo debe contener letras");
+    return false;
+  }
+  else {
+    setSuccessFor(username);
+    return true;
+  }
+}
+
+function validateLastname() {
+  const lastnameValue = lastname.value.trim();
+  const lastnameRegex = /^[a-zA-Z\s]+$/; // Solo letras y espacios
+
+  if (lastnameValue === "") {
+    setErrorFor(lastname, "Apellido no puede estar en blanco");
+    return false;
+  } else if (!lastnameRegex.test(lastnameValue)) {
+    setErrorFor(lastname, "Apellido solo debe contener letras");
+    return false;
   } else {
-      commentsBox.style.display = "none";
+    setSuccessFor(lastname);
+    return true;
+  }
+}
+
+function validatePhone() {
+  const phoneValue = phone.value.trim();
+  const phoneRegex = /^[0-9]{9}$/;
+  if (phoneValue === "") {
+    setErrorFor(phone, "Celular no puede estar en blanco");
+    return false;
+  } else if (!phoneRegex.test(phoneValue)) {
+    setErrorFor(phone, "Celular debe tener 9 dígitos");
+    return false;
+  } else {
+    setSuccessFor(phone);
+    return true;
   }
 }
 
 
-
-//validación del formulario de donación
-
-document.getElementById('form')
-.addEventListener('submit', function(event) {
-  
-  // Prevenimos el envío automático del formulario hasta que se validen los datos
-  event.preventDefault(); 
-  
-  // Obtenemos los valores de los campos de texto y edad
-  const name = document.getElementById('name').value;
-  const Apellido = document.getElementById('lastname').value;
-  const email = document.getElementById('email').value
-  const telefono = document.getElementById('phone').value;
-
-  // Validación del campo de nombre:
-  // Verificamos que el nombre solo contenga letras (mayúsculas o minúsculas) y espacios
-  if (!/^[a-zA-Z\s]+$/.test(name)) {//si -> no
-      alert('El campo nombre debe contener solo letras y espacios.');
-      return; // Si no pasa la validación, detenemos el proceso
+function validateEmail() {
+  const emailValue = email.value.trim();
+  if (emailValue === "") {
+    setErrorFor(email, "Email no puede estar en blanco");
+    return false;
+  } else if (!isEmail(emailValue)) {
+    setErrorFor(email, "Email no es valido");
+    return false;
+  } else {
+    setSuccessFor(email);
+    return true;
   }
+}
 
-  // Validación del campo de apellido:
-  // Verificamos que la edad sea un número, es decir, solo contenga dígitos
-  if (!/^[a-zA-Z\s]+$/.test(Apellido)) {
-      alert('El campo Apellido debe contener solo letras y espacios.');
-      return; // Si no pasa la validación, detenemos el proceso
+
+//Validación de la selección de donación
+function validateDonation() {
+  const donationValue = donation.value.trim();
+
+  if (donationValue === "") {
+    setErrorFor(donation, "Por favor selecciona un monto de donación");
+    return false;
+  } else {
+    setSuccessFor(donation);
+    return true;
   }
+}
 
-  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-      alert('Por favor, ingresa un correo electrónico válido.');
-      return; // Si no pasa la validación, detenemos el proceso
-  }
-  
+//! Helper functions
+function setErrorFor(input, message) {
+  const inputControl = input.parentElement;
+  const small = inputControl.querySelector("small");
 
-  if (!/^\d{1,9}$/.test(telefono)) {
-      alert('Por favor, ingresa un número de hasta 9 dígitos.');
-      return;
-  }
+  small.innerText = message;
+  inputControl.classList.remove("success");
+  inputControl.classList.add("error");
+  inputControl.style.paddingBottom = "20px";
+  inputControl.style.marginBottom = "14px";
+}
 
+function setSuccessFor(input) {
+  const inputControl = input.parentElement;
 
-  // Si ambas validaciones son correctas, mostramos un mensaje de éxito
-  alert('Formulario válido. ¡Enviado correctamente!');
-});
+  inputControl.classList.remove("error");
+  inputControl.classList.add("success");
+  inputControl.style.paddingBottom = "0";
+  inputControl.style.marginBottom = "20px";
+}
+
+//! Checking email
+function isEmail(email) {
+  return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
+}
+
+// https://emaillistvalidation.com/blog/email-validation-in-javascript-using-regular-expressions-the-ultimate-guide/
+
+//! Showing the 'submitted' message
+function submittedForm() {
+  title.classList.add("hidden");
+  form.classList.add("hidden");
+  message.classList.remove("hidden");
+  setTimeout(() => location.reload(true), 2500);
+} 
