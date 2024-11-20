@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //Validación para formulario
 
 const form = document.getElementById("form");
@@ -173,5 +173,4 @@ function submittedForm() {
     window.location.href = '/';
   }, 2500);
 }
-=======
->>>>>>> a8dd6b4b8e4c0675c79c260deab3056966068c48
+
