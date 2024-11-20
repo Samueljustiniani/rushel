@@ -1,0 +1,96 @@
+/* Estilos del equipo */
+.team-container {
+    display: flex; /* Alinea todos los miembros en fila */
+    flex-wrap: wrap; /* Permite que los miembros se muevan a la siguiente línea si es necesario */
+    justify-content: center; /* Centra los miembros en la fila */
+    padding: 40px; /* Padding del contenedor */
+}
+
+.team-title {
+    font-size: 2.5rem; /* Título más grande */
+    margin-bottom: 30px; /* Espacio debajo del título */
+    text-align: center; /* Alinear título al centro */
+    width: 100%; /* Asegura que el título ocupe toda la línea */
+}
+
+.team-member {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    margin: 10px; /* Margen entre miembros */
+    width: 200px; /* Ancho fijo */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transiciones */
+    text-align: center; /* Centrando texto dentro del miembro */
+}
+
+.team-member:hover {
+    transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Efecto de sombra */
+}
+
+.team-member img {
+    border-radius: 10px; /* Bordes redondeados para las imágenes */
+    width: 100%; /* Ancho completo del contenedor */
+    height: auto; /* Mantener proporciones */
+}
+
+.team-member-name {
+    font-size: 1.5rem; /* Tamaño del nombre */
+    margin-top: 10px; /* Espacio encima del nombre */
+}
+
+.email-link {
+    display: inline-block; /* Para que el enlace sea un bloque en línea */
+    margin-top: 10px; /* Espacio encima del enlace */
+    color: #007bff; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 1rem; /* Tamaño de fuente */
+    transition: color 0.3s; /* Transición suave para el color */
+}
+
+.email-link:hover {
+    color: #0056b3; /* Color más oscuro al pasar el mouse */
+}
+
+/* Sección ¿Quiénes somos? */
+.about-us {
+    padding: 40px;
+    text-align: center; /* Centrar el texto */
+}
+
+.about-us h2 {
+    font-size: 2.5rem; /* Tamaño del título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.about-us p {
+    font-size: 1.2rem; /* Tamaño de fuente del párrafo */
+    line-height: 1.6; /* Altura de línea para mejor legibilidad */
+    max-width: 800px; /* Ancho máximo para el párrafo */
+    margin: 0 auto; /* Centrar el párrafo */
+}
+
+/* Media Queries para hacer el diseño más responsivo */
+@media (max-width: 800px) {
+    .team-member {
+        width: 45%; /* Dos miembros por fila en pantallas medianas */
+    }
+}
+
+@media (max-width: 500px) {
+    .team-member {
+        width: 100%; /* Cada miembro ocupa el 100% del ancho en pantallas pequeñas */
+    }
+
+    .team-title {
+        font-size: 2rem; /* Título más pequeño */
+    }
+
+    .about-us h2 {
+        font-size: 2rem; /* Tamaño del título en ¿Quiénes somos? */
+    }
+
+    .about-us p {
+        font-size: 1rem; /* Tamaño de fuente más pequeño en párrafo */
+    }
+}

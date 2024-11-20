@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <link rel="stylesheet" href="/public/css/header_footer.css">
+    <link rel="stylesheet" href="/public/css/producto.css">
+    <link rel="stylesheet" href="/public/css/carrusel.css">
+    <link rel="stylesheet" href="/public/css/custom.css"> <!-- CSS Personalizado -->
+</head>
+
+<body>
+
+    <header>
+        <img class="logo" src="/public/img/Logo/Logo_Blanco.png" alt="logo">
+        <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
+        <nav class="nav" id="nav">
+            <button id="cerrar" class="cerrar-menu"><i class="bi bi-x-square-fill"></i></button>
+            <ul class="nav-list">
+                <li><a href="/index.html">Inicio</a></li>
+                <li><a href="/public/pages/nosotros.html">Nosotros</a></li>
+                <li><a href="/public/pages/producto.html">Producto</a></li>
+                <li><a href="/public/pages/donaciones.html">Donaciones</a></li>
+                <li><a href="/public/pages/retos_proyectos.html">Retos y Proyectos</a></li>
+                <li><a href="/public/pages/metas_indicadores.html">Explora los ODS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="carousel-background">
+            <div class="carousel-image" style="background-image: url(/public/img/Donaciones/FelizDonar.jpg);"></div>
+            <div class="carousel-image" style="background-image: url(/public/img/Pagina_Inicio/pobreza.png);"></div>
+            <div class="carousel-image" style="background-image: url(/public/img/Pagina_Inicio/valle_grande.png);">
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="product-details-box">
+            <div class="image-container">
+                <img id="main-image" src="/public/img/Logo/Logo_Blanco.png" alt="Imagen principal" class="main-image">
+                <div class="thumbnails">
+                    <img src="/public/img/Logo/Logo_Blanco.png" alt="Imagen 1" class="thumbnail" onmouseover="changeImage(this)">
+                    <img src="/public/img/Logo/Logo_Rojo.png" alt="Imagen 2" class="thumbnail" onmouseover="changeImage(this)">
+                    <img src="/public/img/Indicadores/Limpieza.jpg" alt="Imagen 3" class="thumbnail" onmouseover="changeImage(this)">
+                    <img src="/public/img/Organizaciones/TechoPeru/techo peru new2.jpg" alt="Imagen 4" class="thumbnail" onmouseover="changeImage(this)">
+                </div>
+            </div>
+
+            <hr class="divider"> <!-- Línea divisoria -->
+    
+            <div class="product-details">
+                <h2>Descripción del Producto</h2>
+                <p>Este producto es suave, resistente y de alta calidad. Ideal para...</p>
+    
+                <h3>Características:</h3>
+                <ul>
+                    <li>Composición: 100% algodón</li>
+                    <li>Dimensiones: 1.5 metros de ancho</li>
+                    <li>Colores disponibles: Rojo, azul, verde, beige, negro</li>
+                </ul>
+    
+                <h3>Testimonios:</h3>
+                <div class="testimonials">
+                    <p>"Este producto cambió mi vida! - Juan Pérez</p>
+                    <p>"Excelente calidad y muy cómodo. - María López</p>
+                </div>
+    
+                <h3>Preguntas Frecuentes:</h3>
+                <div class="faqs">
+                    <h4>¿Es lavable a máquina?</h4>
+                    <p>Sí, se puede lavar a máquina en frío.</p>
+                </div>
+    
+                <h3>Guía de Uso:</h3>
+                <p>Para mantener la calidad del producto, recomendamos...</p>
+    
+                <h3>Video Demostrativo:</h3>
+                <video controls>
+                    <source src="video-demostrativo.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="/public/js/dinamic/producto.js"></script>
+    <script src="/public/js/dinamic/menu.js"></script>
+    <script src="/public/js/static/carousel.js"></script>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/public/img/Logo/Logo_Blanco.png" alt="BMS Logo" width="170">
+            </div>
+            <div class="social-media">
+                <a href="https://www.facebook.com/tecnologiaVG/?locale=es_LA"><img
+                        src="/public/img/Iconos/Pagina_Principal/Contacto/facebook.png" alt="Facebook" width="30"></a>
+                <a href="https://www.youtube.com/@vallegrande_/featured"><img
+                        src="/public/img/Iconos/Pagina_Principal/Contacto/youtube.png" alt="YouTube" width="30"></a>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <img src="/public/img/Iconos/Pagina_Principal/Contacto/telefono.png" alt="Teléfono" width="20">
+                    <p>(01) 581-2261</p>
+                </div>
+                <div class="contact-item">
+                    <img src="/public/img/Iconos/Pagina_Principal/Contacto/correo_electronico.png" alt="Email"
+                        width="20">
+                    <p><a href="mailto:informes@vallegrande.edu.pe">informes@vallegrande.edu.pe</a></p>
+                </div>
+                <div class="contact-item">
+                    <img src="/public/img/Iconos/Pagina_Principal/Contacto/correo_electronico.png" alt="Email"
+                        width="20">
+                    <p><a
+                            href="mailto:briseyda.arbizu.valladolid@vallegrande.edu.pe">briseyda.arbizu.valladolid@vallegrande.edu.pe</a>
+                    </p>
+                </div>
+                <div class="contact-item">
+                    <img src="/public/img/Iconos/Pagina_Principal/Contacto/correo_electronico.png" alt="Email"
+                        width="20">
+                    <p><a
+                            href="mailto:marilyn.vilcapuma.trujillo@vallegrande.edu.pe">marilyn.vilcapuma.trujillo@vallegrande.edu.pe</a>
+                    </p>
+                </div>
+                <div class="contact-item">
+                    <img src="/public/img/Iconos/Pagina_Principal/Contacto/correo_electronico.png" alt="Email"
+                        width="20">
+                    <p><a
+                            href="mailto:samuel.justiniani.lancho@vallegrande.edu.pe">samuel.justiniani.lancho@vallegrande.edu.pe</a>
+                    </p>
+                </div>
+                <div class="contact-item">
+                    <img src="/public/img/Iconos/Pagina_Principal/Contacto/sitio_web.png" alt="Website" width="20">
+                    <p><a href="https://www.vallegrande.edu.pe" target="_blank">www.vallegrande.edu.pe</a></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>©2024 BMS - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

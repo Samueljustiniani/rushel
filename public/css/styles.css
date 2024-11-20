@@ -1,0 +1,507 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-style: unset;
+    background-color: #EEECE2;
+}
+.primary-section{
+    text-align: right;
+    margin: 50px;
+}
+.ods-subtitle h1{
+    font-size: 50px;
+    margin-bottom: 50px;
+    color: #731111;
+}
+.ods-text {
+    display: inline-block;
+    text-align: justify;
+    justify-content: center;
+    background-color: white;
+    padding: 15px 40px;
+    border-radius: 10px;
+    margin-right: 20px; /* Margen derecho para separarlo de la esquina */
+    max-width: 900px; /* Ancho máximo del contenedor */
+}
+.ods-text p {
+    font-size: 1.5rem; /* Aumenta el tamaño del texto */
+    line-height: 1.6; /* Mejora la legibilidad */
+}
+.image-container {
+    display: flex; /* Activa Flexbox */
+    justify-content: flex-start; /* Alinea horizontalmente a la izquierda */
+    align-items: center; /* Alinea verticalmente al centro */
+    padding: 20px; /* Espaciado interno opcional */
+    margin: 20px; /* Margen externo opcional */
+}
+
+.ods-image {
+    max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-left: 40px; /* Ajusta el espacio a la izquierda de la imagen */
+    margin-top: -340px; /* Ajusta el espacio en la parte superior */
+    margin-bottom: 10px; /* Ajusta el espacio en la parte inferior */
+}
+
+@media screen and (max-width: 850px){
+    .ods-subtitle h1 {
+        font-size: 1.9rem;
+        text-align: center;
+    }
+    .ods-text {
+        padding: 10px 20px;
+        margin: 10px;
+        
+        margin-top: 300px;
+        flex-direction: center;
+        
+    }
+    .ods-text p {
+        font-size: 1.2rem;
+    }
+    .image-container {
+        text-align: left;
+        flex-direction: center;
+        display: flex;
+    }
+    .ods-image {
+        width: 250px;
+        margin-left: 190px;
+        margin-bottom: -80px;
+        transform: translateY(-265px);
+    }
+    
+    
+    .icon-card {
+        padding: 120px;
+        align-items: center;
+        padding-top: 30px;
+        padding-left: 100px;
+        transform: translateX(-100px);
+        gap:50px;
+        margin: 50px;
+    }
+    #history-button{
+        transform: translateY(870px);
+        margin-right: 50px;
+    }
+    #content h1 {
+        text-align: center;
+    }
+    #content {
+        transform: translateY(-100px);
+    }
+}
+
+.banner-ods{
+    width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho */
+    overflow: hidden; /* Oculta cualquier contenido que se salga del contenedor */
+}
+.ods-banner{
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina el espacio debajo de la imagen */
+}
+.icons-section {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los íconos se envuelvan en filas */
+    justify-content: center; /* Centra los íconos horizontalmente */
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.icon-card {
+    position: relative;
+    width: 214px; /* Ancho de cada cartilla */
+    height: 216px; /* Alto de cada cartilla */
+    margin: 10px; /* Espaciado entre las cartillas */
+    perspective: 1000px; /* Añade perspectiva para el efecto 3D */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+    width: calc(90% / 6 - 30px); /* Seis cartillas por línea */
+}
+
+.icon-front, .icon-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Oculta la parte trasera */
+    transition: transform 0.6s; /* Añade una transición suave al voltear */
+    display: flex; /* Permite centrar el contenido */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+}
+
+.icon-front {
+    background-color: #EEECE2; /* Color de fondo para la parte frontal */
+}
+
+.icon-back {
+    background-color: #ffffff; /* Color de fondo para la parte trasera */
+    transform: rotateY(180deg); /* Rota la parte trasera */
+}
+.icon-back p{
+    margin:15px;
+    text-align: justify;
+}
+
+/* Estilos del modal */
+.modal {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 1; /* Muestra por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Habilita el desplazamiento si es necesario */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro y semi-transparente */
+}
+
+.modal-content {
+    background-color: #fefefe; /* Color de fondo del contenido del modal */
+    margin: 15% auto; /* Márgenes para centrar el contenido */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #888; /* Borde del modal */
+    width: 80%; /* Ancho del modal */
+}
+#close-sidebar {
+    color: #ffffff; /* Color del botón de cerrar */
+    float: right; /* Alinear a la derecha */
+    font-size: 28px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+}
+#close-sidebar:hover {
+    color: #e2be50; /* Color del botón de cerrar */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambia el cursor al pasar */
+}
+.close-modalButton {
+    color: #aaa; /* Color del botón de cerrar */
+    float: right; /* Alinear a la derecha */
+    font-size: 28px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+}
+
+.close-modalButton:hover,
+.close-modalButton:focus {
+    color: black; /* Cambia color al pasar el ratón */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambia el cursor al pasar */
+}
+.ods-card img {
+    position: relative;
+    width: 216px; /* Ancho de cada cartilla */
+    height: 171.53px; /* Alto de cada cartilla */
+    margin: 10px; /* Espaciado entre las cartillas */
+    perspective: 1000px; /* Añade perspectiva para el efecto 3D */
+    margin-top: 32px; /* Ajusta el espacio en la parte superior */
+    margin-bottom: 10px; /* Ajusta el espacio en la parte inferior */
+}
+#history-button {
+    position: absolute; /* Posicionamiento absoluto */
+    transform: translatey(750px); 
+    right: 139px; /* Distancia desde el lado derecho */
+    padding: 15px 80px; /* Espaciado interno del botón */
+    background-color: #AC1414; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 15px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s; /* Efecto de transición */
+    font-size: 1.3rem;
+    width: 410px; 
+    height: 60px; 
+}
+
+#history-button:hover {
+    background-color: #ffffff; /* Color al pasar el mouse */
+    color:#AC1414
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 100%; /* Oculto inicialmente */
+    width: 100%;
+    height: 100%;
+    background: url("/public/img/Pagina_Inicio/historiaODS.jpg");
+    background-size: cover;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.sidebar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    margin: 200px;
+    font-family: 'Segoe UI';
+    font-size: 1.5rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.importance-section{
+    margin-top: 150px;
+    background-color: #FFC4BD;
+    padding: 250px;
+    text-align: justify;
+}
+.importance-section h1 {
+    margin-top: -100px;
+    font-size: 2.5rem;
+    color: #731111;
+}
+@media screen and (max-width: 850px){
+
+    .importance-section h1 {
+        font-size: 2.8rem;
+        text-align: center;
+        margin-left: -150px;
+        margin-right: -150px ;
+    }
+    .importance-section p {
+        margin-left: -150px;
+        margin-right: -150px ;
+    }
+    .importance-section iframe {
+        width: 600px;
+        height: 500px;
+        transform: translateX(-150px);
+    }
+}
+.importance-section p {
+    margin-top: 50px; /* Espacio entre el subtítulo y el párrafo */
+    /* Otras propiedades de estilo que necesites */
+    font-size: 24.3px;
+    max-width: 500px;
+}
+.importance-section iframe{
+    max-width: 600px;
+    max-height: 400px;
+    float: right;
+    transform: translateY(-370px);
+} 
+ .explore-ods {
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 200px;
+ }
+ .explore-ods h1 {
+    padding: 20px;
+    font-size: 2.5rem;
+    color: #731111;
+ }
+.container-ods{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.icon-position{
+    margin: 0 40px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 42px 84px;
+    font-family: 'Calistoga';
+}
+.icon-position a {
+    color: #333; /* Cambia el color del enlace al pasar el mouse */
+    text-decoration: none; /* Opcional: subrayado al hacer hover */
+}
+.icon-position:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+    background-color: #fcb7b7;
+}
+.icon-position img{
+    max-width: 100%;
+    height: auto;
+}
+@media screen and (max-width: 850px){
+   
+    .explore-ods h1 {
+        font-size: 2.8rem;
+    }
+    .icon-position {
+        margin: 10px;
+        padding: 10px 60px;
+        align-items: center;
+    }
+}
+.projects {
+    background-color: #ffffff;
+    padding: 50px;
+}
+
+.icon-subtitle {
+    display: flex;
+    align-items: center;
+}
+.icon-subtitle h1 {
+    font-size: 2.5rem;
+    color: #731111;
+}
+
+
+.subtitle-icon {
+    align-items: center;
+    display: flex;
+    transform: translateX(1200px);
+}
+.subtitle-icon h1 {
+    font-size: 2.5rem;
+    color: #731111;
+}
+@media screen and (max-width: 850px){
+    .icon-subtitle h1{
+        font-size: 2.8rem;
+    }
+    .subtitle-icon h1 {
+        font-size: 2.8rem;
+    }
+    .subtitle-icon {
+        transform: translateX(-660px);
+        align-items: center;
+    }
+}
+.organization {
+    display:flex;
+    padding: 50px;
+    background-color: #268dcf;
+}
+.organizations h1 {
+    text-align: right;
+    padding-right: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.organization p{
+    padding: 100px;
+    font-size: 25px;
+    color: white;
+    text-align: justify;
+    transform: translateY(80px);
+}
+.organizacion-dos {
+    background-color: rgb(255, 228, 228);
+    display: flex;
+}
+.organization-two {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+}
+.organization-two h1 {
+    text-align: right;
+    margin: 58px;
+    margin-top: 50px;
+    transform: translateX(250px);
+    font-size: 2.5rem;
+}
+.organization-two img {
+    margin: 50px;
+    transform: translateY(-180px);
+}
+.organization-two p {
+    font-size: 20px;
+    text-align: justify;
+    max-width: 350px;
+    transform: translateY(50px);
+    float: right;
+}
+.donations {
+    background-color: #6B1414;
+    color: white;
+    padding-top: 50px;
+    padding-bottom: 190px;
+    position: relative; /* Agregado para permitir el posicionamiento absoluto de los botones */
+    margin-bottom: 20px;
+}
+
+.donations h1 {
+    margin: 50px;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.donations-container {
+    display: flex;
+    justify-content: center;
+}
+
+.donations-items {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo para los botones */
+.donations-buttons {
+    display: flex;                   /* Alinea los botones en fila */
+    justify-content: center;         /* Centra los botones horizontalmente */
+    position: absolute;              /* Permite posicionar los botones en la parte inferior */
+    bottom: 20px;                   /* Coloca los botones a 20px del fondo de la sección */
+    left: 50%;                      /* Mueve el contenedor al centro horizontalmente */
+    transform: translateX(-50%);   /* Ajusta para centrar completamente */
+    width: 100%;                    /* Asegura que el contenedor ocupe todo el ancho */
+    padding-bottom: 50px;
+}
+
+/* Estilo para el botón primario (Blanco) */
+.donation-button.primary {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+.donation-button.primary:hover {
+    background-color: lightgray;
+}
+
+/* Estilo para el botón secundario (Rojo) */
+.donation-button.secondary {
+    background-color: #AC1414;
+    color: white;
+    border: none;
+    padding: 10px 50px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.donation-button.secondary:hover {
+    background-color: darkred;
+}
