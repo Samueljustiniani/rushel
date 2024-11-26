@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Imagen de perfil
             const profilePic = document.createElement('div');
             profilePic.classList.add('profile-pic');
-            profilePic.style.backgroundImage = "url('/public/img/Logo/Logo_Blanco.png')"; // Cambiar por la ruta correcta de la imagen
+            profilePic.style.backgroundImage = "url('/img/perfil.png')"; // Cambiar por la ruta correcta de la imagen
 
             // Detalles del comentario (nombre y texto del comentario)
             const commentDetails = document.createElement('div');
