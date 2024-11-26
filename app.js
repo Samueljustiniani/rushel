@@ -80,6 +80,11 @@ app.post('/submit', (req, res) => {
     );
 });
 
+// Página principal
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Iniciar servidor
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://3.222.250.196:${port}`);
