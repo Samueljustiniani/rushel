@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const connection = require('./conexion'); // Asegúrate de que el archivo 'database.js' esté correctamente configurado
-
+const path = require('path'); 
 const app = express();
 const port = 3000;
 
