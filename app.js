@@ -72,28 +72,28 @@ app.get('/evento', async (req, res) => {
 
 
 //comentarios del producto -----------------------------------------------------------------------------------------------
+const express = require('express');
+const bodyParser = require('body-parser');
+const connection = require('./conexion');
 
-const connection = require('./public/js/static/conexion'); // Asegúrate de que el archivo 'database.js' esté correctamente configurado
+app.use(bodyParser.json()); // Middleware para parsear JSON
 
-// Middleware para parsear datos JSON y archivos estáticos
-app.use(bodyParser.json());
-app.use(express.static('public')); // Carpeta con archivos estáticos
+app.post('/submit', async (req, res) => {
+    const { nombre, comentario } = req.body;
+    if (!nombre || !comentario) {
+        return res.status(400).json({ success: false, message: 'Campos requeridos faltantes' });
+    }
 
-// Ruta para obtener comentarios y sus respuestas
-app.get('/comments', (req, res) => {
-    const queryComments = `
-        SELECT c.id AS comentario_id, c.nombre AS autor_comentario, c.comentario, c.fecha AS fecha_comentario,
-               r.id AS respuesta_id, r.nombre AS autor_respuesta, r.respuesta, r.fecha AS fecha_respuesta
-        FROM comentarios c
-        LEFT JOIN respuestas r ON c.id = r.comentario_id
-        ORDER BY c.fecha DESC, r.fecha ASC;
-    `;
+    try {
+        const query = 'INSERT INTO comentarios (nombre, comentario, fecha) VALUES (?, ?, NOW())';
+        await connection.execute(query, [nombre, comentario]);
+        res.json({ success: true, message: 'Comentario guardado correctamente' });
+    } catch (error) {
+        console.error('Error al guardar el comentario:', error);
+        res.status(500).json({ success: false, message: 'Error al guardar el comentario' });
+    }
+});
 
-    connection.query(queryComments, (err, results) => {
-        if (err) {
-            console.error("Error al obtener comentarios:", err.message);
-            return res.status(500).json({ success: false, message: "Error al obtener los comentarios." });
-        }
 
         const comments = {};
         results.forEach(row => {
