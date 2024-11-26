@@ -1,7 +1,7 @@
 {
-  "name": "rushel",
+  "name": "as241s2_t02_ods01",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

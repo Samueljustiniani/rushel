@@ -2,22 +2,22 @@
 //Validación para formulario
 
 const form = document.getElementById("form");
-const username = document.getElementById("username");
-const email = document.getElementById("email");
+const username = document.getElementById("nombres");
+const lastname = document.getElementById("apellidos");
+const email = document.getElementById("correo");
 //cosnt lastname and phone
-const lastname = document.getElementById("Lastname");
-const phone = document.getElementById("phone");
+const direccion = document.getElementById("direccion");
+const phone = document.getElementById("telefono");
 const title = document.querySelector(".title");
 const button = document.querySelector("button");
-const message = document.querySelector(".message");
-const donation = document.getElementById("donation");
+const message = document.querySelector(".comentario");
+const donation = document.getElementById("seleccion_objetos");
 
 //! Event listeners for real-time input validation
 username.addEventListener("input", validateUsername);
-
-phone.addEventListener("input", validatePhone);
 lastname.addEventListener("input", validateLastname);
-
+direccion.addEventListener("input", validatedireccion);
+phone.addEventListener("input", validatePhone);
 email.addEventListener("input", validateEmail);
 donation.addEventListener("change", validateDonation);
 
@@ -29,6 +29,7 @@ form.addEventListener("submit", (e) => {
   if (
     validateUsername() &&
     validateLastname() &&
+    validatedireccion()&&
     validatePhone() &&
     validateEmail() &&
     validateDonation()
@@ -53,8 +54,6 @@ form.addEventListener("submit", (e) => {
       .catch((error) => console.error("Error:", error));
   }
 });
-
-
 
 
 //! Validation functions
@@ -90,9 +89,29 @@ function validateLastname() {
   }
 }
 
+function validatedireccion() {
+  const direccionValue = direccion.value.trim();
+  const direccionRegex = /^[A-Za-z0-9áéíóúÁÉÍÓÚñÑ#.,\-\s]+$/; // Permitir letras, números, espacios y caracteres comunes
+
+  if (direccionValue === "") {
+    setErrorFor(direccion, "La dirección no puede estar en blanco");
+    return false;
+  } else if (!direccionRegex.test(direccionValue)) {
+    setErrorFor(
+      direccion,
+      "La dirección solo puede contener letras, números, espacios y los caracteres: #, ., , o -"
+    );
+    return false;
+  } else {
+    setSuccessFor(direccion);
+    return true;
+  }
+}
+
+
 function validatePhone() {
   const phoneValue = phone.value.trim();
-  const phoneRegex = /^[0-9]{9}$/;
+  const phoneRegex = /^9\d{8}$/;
   if (phoneValue === "") {
     setErrorFor(phone, "Celular no puede estar en blanco");
     return false;
@@ -170,7 +189,7 @@ function submittedForm() {
 
   // Redirigi
   setTimeout(() => {
-    window.location.href = '/';
+    window.location.href = '/index.html';
   }, 2500);
 }
 

@@ -8,7 +8,8 @@
     align-items: center;
     min-height: 80vh;
     width: 100%;
-    background: #fff;
+    margin-top: -150px;
+    background: #ffe4e4;
     
     background-image: radial-gradient(
         at 46.6% 46.9%,

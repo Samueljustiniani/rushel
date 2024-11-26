@@ -8,92 +8,128 @@ body {
     font-style: unset;
     background-color: #EEECE2;
 }
-.primary-section{
-    text-align: right;
+/* Contenedor principal */
+.primary-section {
+    text-align: center; /* Cambiado a 'center' para una mejor alineación inicial */
     margin: 50px;
 }
-.ods-subtitle h1{
+
+/* Título de la sección */
+.ods-subtitle h1 {
     font-size: 50px;
     margin-bottom: 50px;
     color: #731111;
 }
+
+/* Contenedor de texto */
 .ods-text {
     display: inline-block;
     text-align: justify;
-    justify-content: center;
     background-color: white;
     padding: 15px 40px;
     border-radius: 10px;
-    margin-right: 20px; /* Margen derecho para separarlo de la esquina */
-    max-width: 900px; /* Ancho máximo del contenedor */
+    margin: 20px auto; /* Centra el texto horizontalmente */
+    max-width: 900px; /* Limita el ancho del texto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
+
+/* Texto dentro del contenedor */
 .ods-text p {
     font-size: 1.5rem; /* Aumenta el tamaño del texto */
     line-height: 1.6; /* Mejora la legibilidad */
 }
+
+/* Contenedor de la imagen */
 .image-container {
-    display: flex; /* Activa Flexbox */
-    justify-content: flex-start; /* Alinea horizontalmente a la izquierda */
-    align-items: center; /* Alinea verticalmente al centro */
-    padding: 20px; /* Espaciado interno opcional */
-    margin: 20px; /* Margen externo opcional */
+    display: flex;
+    justify-content: center; /* Centra la imagen */
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto; /* Centra la imagen horizontalmente */
 }
 
+/* Imagen */
 .ods-image {
-    max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+    max-width: 100%; /* Asegura que la imagen no exceda su contenedor */
     height: auto; /* Mantiene la proporción de la imagen */
-    margin-left: 40px; /* Ajusta el espacio a la izquierda de la imagen */
-    margin-top: -340px; /* Ajusta el espacio en la parte superior */
-    margin-bottom: 10px; /* Ajusta el espacio en la parte inferior */
+    margin: 0 auto;
 }
 
-@media screen and (max-width: 850px){
+/* Botón de historia */
+#history-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #731111;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transform: translateY(0); /* Por defecto, sin movimiento */
+    text-align: center;
+}
+
+#history-button:hover {
+    background-color: #a31313; /* Efecto hover */
+}
+
+/* Responsive: Pantallas medianas */
+@media screen and (max-width: 850px) {
     .ods-subtitle h1 {
-        font-size: 1.9rem;
+        font-size: 1.9rem; /* Reduce el tamaño del título */
         text-align: center;
     }
+
     .ods-text {
-        padding: 10px 20px;
-        margin: 10px;
-        
-        margin-top: 300px;
-        flex-direction: center;
-        
+        padding: 10px 20px; /* Reduce el padding */
+        margin: 20px auto;
+        max-width: 90%; /* Ajusta el ancho del contenedor */
     }
+
     .ods-text p {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* Reduce el tamaño del texto */
     }
+
     .image-container {
-        text-align: left;
-        flex-direction: center;
-        display: flex;
+        margin-top: 20px; /* Ajusta el espacio superior */
     }
+
     .ods-image {
-        width: 250px;
-        margin-left: 190px;
-        margin-bottom: -80px;
-        transform: translateY(-265px);
+        max-width: 80%; /* Ajusta el ancho relativo */
+        margin: 20px auto; /* Centra la imagen */
     }
-    
-    
-    .icon-card {
-        padding: 120px;
-        align-items: center;
-        padding-top: 30px;
-        padding-left: 100px;
-        transform: translateX(-100px);
-        gap:50px;
-        margin: 50px;
+
+    #history-button {
+        font-size: 0.9rem; /* Ajusta el tamaño del texto del botón */
+        padding: 8px 15px;
+        transform: translateY(20px); /* Ajusta su posición */
+        margin-top: 15px;
     }
-    #history-button{
-        transform: translateY(870px);
-        margin-right: 50px;
+}
+
+/* Responsive: Pantallas pequeñas */
+@media screen and (max-width: 480px) {
+    .ods-subtitle h1 {
+        font-size: 1.5rem; /* Reduce aún más el tamaño del título */
+        margin-bottom: 20px;
     }
-    #content h1 {
-        text-align: center;
+
+    .ods-text {
+        font-size: 0.9rem; /* Reduce el tamaño del texto */
+        padding: 10px;
+        line-height: 1.4;
     }
-    #content {
-        transform: translateY(-100px);
+
+    .ods-image {
+        width: 100%; /* La imagen ocupa todo el ancho */
+        max-width: 250px; /* Tamaño máximo de la imagen */
+    }
+
+    #history-button {
+        font-size: 0.8rem; /* Ajusta el tamaño del botón */
+        padding: 8px 12px;
+        margin-top: 10px;
     }
 }
 
@@ -106,46 +142,96 @@ body {
     height: auto; /* Mantiene la proporción de la imagen */
     display: block; /* Elimina el espacio debajo de la imagen */
 }
+/* Estilo general de la sección de íconos */
 .icons-section {
     display: flex;
     flex-wrap: wrap; /* Permite que los íconos se envuelvan en filas */
     justify-content: center; /* Centra los íconos horizontalmente */
-    margin-top: 50px;
-    margin-bottom: 50px;
+    gap: 20px; /* Espaciado uniforme entre íconos */
+    margin: 50px auto; /* Margen superior e inferior */
+    padding: 0 10px; /* Espaciado lateral */
 }
 
+/* Estilo de cada cartilla */
 .icon-card {
+    flex: 1 1 calc(16.66% - 20px); /* Ancho dinámico para 6 íconos por fila */
+    max-width: 214px; /* Ancho máximo de las cartillas */
+    aspect-ratio: 1; /* Proporción 1:1 (cuadrado) */
+    margin: 10px; /* Espaciado entre íconos */
     position: relative;
-    width: 214px; /* Ancho de cada cartilla */
-    height: 216px; /* Alto de cada cartilla */
-    margin: 10px; /* Espaciado entre las cartillas */
-    perspective: 1000px; /* Añade perspectiva para el efecto 3D */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
-    width: calc(90% / 6 - 30px); /* Seis cartillas por línea */
+    height: auto; /* Altura proporcional */
+    perspective: 1000px; /* Añade perspectiva para efecto 3D */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
 }
 
+/* Parte frontal y trasera de las cartillas */
 .icon-front, .icon-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden; /* Oculta la parte trasera */
-    transition: transform 0.6s; /* Añade una transición suave al voltear */
-    display: flex; /* Permite centrar el contenido */
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Centra horizontalmente */
+    transition: transform 0.6s ease; /* Transición suave al girar */
+    display: flex; /* Centra el contenido */
+    align-items: center; /* Alineación vertical */
+    justify-content: center; /* Alineación horizontal */
+    font-size: 1rem; /* Tamaño base de texto */
+    text-align: center; /* Centra el texto */
 }
 
+/* Estilo de la parte frontal */
 .icon-front {
-    background-color: #EEECE2; /* Color de fondo para la parte frontal */
+    background-color: #EEECE2; /* Color de fondo frontal */
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 10px; /* Esquinas redondeadas */
 }
 
+/* Estilo de la parte trasera */
 .icon-back {
-    background-color: #ffffff; /* Color de fondo para la parte trasera */
-    transform: rotateY(180deg); /* Rota la parte trasera */
+    background-color: #ffffff; /* Color de fondo trasero */
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 10px; /* Esquinas redondeadas */
+    transform: rotateY(180deg); /* Inicialmente girado */
 }
-.icon-back p{
-    margin:15px;
+
+.icon-back p {
+    margin: 15px;
     text-align: justify;
+    font-size: 0.9rem; /* Tamaño más pequeño para descripciones */
+    line-height: 1.4; /* Mejora la legibilidad */
+}
+
+/* Efecto de rotación */
+.icon-card:hover .icon-front {
+    transform: rotateY(180deg);
+}
+
+.icon-card:hover .icon-back {
+    transform: rotateY(0);
+}
+
+/* Media Queries para diseño responsivo */
+@media (max-width: 1024px) {
+    .icon-card {
+        flex: 1 1 calc(25% - 20px); /* 4 íconos por fila */
+    }
+}
+
+@media (max-width: 768px) {
+    .icon-card {
+        flex: 1 1 calc(33.33% - 20px); /* 3 íconos por fila */
+    }
+}
+
+@media (max-width: 480px) {
+    .icon-card {
+        flex: 1 1 calc(50% - 20px); /* 2 íconos por fila */
+    }
+}
+
+@media (max-width: 320px) {
+    .icon-card {
+        flex: 1 1 100%; /* 1 ícono por fila */
+    }
 }
 
 /* Estilos del modal */
@@ -267,94 +353,162 @@ body {
     z-index: 1;
 }
 
-.importance-section{
+/* Estilo para la sección principal */
+.importance-section {
     margin-top: 150px;
     background-color: #FFC4BD;
-    padding: 250px;
-    text-align: justify;
+    padding: 50px;
+    display: grid; /* Usamos Flexbox para organizar el texto y el video */
+    flex-direction: row; /* Establece que los elementos estén en fila */
+    align-items: flex-start; /* Alinea todo al principio del eje vertical */
+    justify-content: flex-start; /* Alinea los elementos a la izquierda */
 }
+
+/* Estilo para el título */
 .importance-section h1 {
-    margin-top: -100px;
     font-size: 2.5rem;
     color: #731111;
 }
-@media screen and (max-width: 850px){
 
-    .importance-section h1 {
-        font-size: 2.8rem;
-        text-align: center;
-        margin-left: -150px;
-        margin-right: -150px ;
-    }
-    .importance-section p {
-        margin-left: -150px;
-        margin-right: -150px ;
-    }
-    .importance-section iframe {
-        width: 600px;
-        height: 500px;
-        transform: translateX(-150px);
-    }
-}
+/* Estilo para el párrafo */
 .importance-section p {
-    margin-top: 50px; /* Espacio entre el subtítulo y el párrafo */
-    /* Otras propiedades de estilo que necesites */
-    font-size: 24.3px;
-    max-width: 500px;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: justify; /* Justifica el texto */
+    right: inherit;
+    padding: 100px;
 }
-.importance-section iframe{
-    max-width: 600px;
-    max-height: 400px;
-    float: right;
-    transform: translateY(-370px);
-} 
- .explore-ods {
+
+.importance-section iframe {
+    width: 100%;
+    max-width: 600px; /* Ajusta el tamaño máximo del video */
+    height: 400px; /* Ajusta la altura del video */
+    margin-top: 20px; /* Espacio entre el texto y el video */
+    margin-left: 30px; /* Añade un pequeño margen a la izquierda para separar el video del texto */
+    transform: translateX(380px);
+}
+
+
+/* Estilo para pantallas pequeñas */
+@media screen and (max-width: 850px) {
+    .importance-section {
+        flex-direction: column; /* Los elementos se apilan verticalmente en pantallas pequeñas */
+        padding: 50px 20px; /* Ajuste del padding */
+    }
+
+    .importance-section iframe {
+        width: 100%; /* El video ocupa todo el ancho disponible */
+        height: 400px; /* Ajuste de la altura */
+        margin-top: 20px; /* Espacio entre el texto y el video */
+    }
+
+    .importance-section p {
+        margin-right: 0; /* Elimina el margen derecho en pantallas pequeñas */
+    }
+}
+
+
+
+
+.explore-ods { 
     text-align: center;
     margin-top: 150px;
     margin-bottom: 200px;
- }
- .explore-ods h1 {
+}
+
+.explore-ods h1 {
     padding: 20px;
     font-size: 2.5rem;
     color: #731111;
- }
-.container-ods{
+}
+
+.container-ods {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centramos los cuadros horizontalmente */
+    gap: 20px; /* Espacio adecuado entre los iconos */
+    flex-wrap: wrap; /* Permite que los iconos se muevan a la siguiente línea si no caben */
     margin: 20px 0;
 }
-.icon-position{
-    margin: 0 40px;
+
+.icon-position {
     text-align: center;
     background-color: #ffffff;
     border-radius: 20px;
     padding: 42px 84px;
-    font-family: 'Calistoga';
+    width: 250px; /* Tamaño fijo para los iconos */
+    height: 250px; /* Altura fija para los iconos */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-bottom: 20px; /* Espacio entre filas cuando se envían a la siguiente línea */
 }
+
 .icon-position a {
-    color: #333; /* Cambia el color del enlace al pasar el mouse */
-    text-decoration: none; /* Opcional: subrayado al hacer hover */
+    color: #333; 
+    text-decoration: none;
 }
-.icon-position:hover{
+
+.icon-position:hover {
     transform: scale(1.05);
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
     background-color: #fcb7b7;
 }
-.icon-position img{
-    max-width: 100%;
+
+.icon-position img {
+    max-width: 80%;
     height: auto;
+    margin-bottom: 15px;
 }
-@media screen and (max-width: 850px){
-   
+
+@media screen and (max-width: 850px) {
     .explore-ods h1 {
-        font-size: 2.8rem;
+        font-size: 2rem; /* Tamaño más pequeño para pantallas medianas */
     }
+
+    .container-ods {
+        flex-direction: column; /* Cambia la disposición a columna en pantallas pequeñas */
+        align-items: center; /* Centra los elementos en columna */
+        gap: 15px; /* Espacio entre los iconos */
+    }
+
     .icon-position {
-        margin: 10px;
-        padding: 10px 60px;
-        align-items: center;
+        padding: 20px 40px; /* Menos padding en pantallas pequeñas */
+        width: 220px; /* Reducimos el tamaño de los íconos */
+        height: 250px;
+    }
+
+    .icon-position img {
+        max-width: 70%; /* Ajustamos las imágenes */
     }
 }
+
+@media screen and (max-width: 480px) {
+    .explore-ods {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    .explore-ods h1 {
+        font-size: 1.8rem;
+    }
+
+    .container-ods {
+        gap: 10px; /* Espacio aún más pequeño */
+    }
+
+    .icon-position {
+        padding: 15px 30px; /* Ajusta aún más el padding */
+        width: 200px; /* Iconos más pequeños */
+        height: 20px;
+    }
+
+    .icon-position img {
+        max-width: 60%; /* Imágenes aún más pequeñas */
+    }
+}
+
 .projects {
     background-color: #ffffff;
     padding: 50px;
@@ -373,7 +527,7 @@ body {
 .subtitle-icon {
     align-items: center;
     display: flex;
-    transform: translateX(1200px);
+    transform: translateX(750px);
 }
 .subtitle-icon h1 {
     font-size: 2.5rem;
@@ -404,10 +558,10 @@ body {
 }
 .organization p{
     padding: 100px;
-    font-size: 25px;
+    font-size: 20px;
     color: white;
     text-align: justify;
-    transform: translateY(80px);
+    transform: translateY(20px);
 }
 .organizacion-dos {
     background-color: rgb(255, 228, 228);
@@ -422,19 +576,17 @@ body {
     text-align: right;
     margin: 58px;
     margin-top: 50px;
-    transform: translateX(250px);
     font-size: 2.5rem;
 }
 .organization-two img {
     margin: 50px;
-    transform: translateY(-180px);
+    margin-top: -180px;
 }
 .organization-two p {
     font-size: 20px;
     text-align: justify;
-    max-width: 350px;
-    transform: translateY(50px);
-    float: right;
+    margin: 100px;
+    margin-top: -40px;
 }
 .donations {
     background-color: #6B1414;

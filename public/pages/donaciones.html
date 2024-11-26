@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="/public/css/donaciones.css">
     <link rel="stylesheet" href="/public/css/header_footer.css">
+    
     <title>Donaciones</title>
 </head>
 
@@ -18,7 +19,7 @@
         <nav class="nav" id="nav">
             <button id="cerrar" class="cerrar-menu"><i class="bi bi-x-square-fill"></i></button>
             <ul class="nav-list">
-                <li><a href="/index.html">Inicio</a></li>
+                <li><a href="/">Inicio</a></li>
                 <li><a href="/public/pages/nosotros.html">Nosotros</a></li>
                 <li><a href="/public/pages/producto.html">Producto</a></li>
                 <li><a href="/public/pages/donaciones.html">Donaciones</a></li>
@@ -38,10 +39,11 @@
     <div class="container-form">
         <div class="info-form">
             <h2>Transforma vidas con tu donación</h2>
-            <p>Ayuda a Erradicar la Pobreza Hoy: Tu donación puede transformar vidas. Con solo un pequeño aporte,
-                estarás empoderando a familias vulnerables, brindándoles acceso a recursos esenciales como educación,
-                salud y oportunidades laborales. <br> Juntos, podemos construir un mundo más equitativo y sostenible.
-                <strong>Dona ahora y sé parte del cambio</strong>.
+            <br>
+            <p>Dona Ropa, utiles escolares, alimentos,recursos tecnologicos,y contribuye a construir un futuro mejor para quienes mas lo necesitan.Cada donación, por pequeña que sea marca una gran diferancia en la lucha contra la pobreza. <br>
+                <br>
+            Únete a nuestra misión de transformar necesidades en oportunidades. <br>
+            <strong>¡Juntos podemos lograrlo!</strong>.
             </p>
             <!--slider,cubo de imagenes-->
             <div class="swiper">
@@ -73,7 +75,7 @@
                             src="https://media.telemundo49.com/2021/07/donacion-utiles-escolares.jpg?quality=85&strip=all&fit=1200%2C675" />
                         <div class="cost dark-text">Proyectos</div>
                         <div class="overlay">
-                            <h1>Dona Utiles escolare</h1>
+                            <h1>Dona Utiles escolare<h1>
                                     <div class="ratings">
                                         <span>Tú tambien sumate</span>
                                     </div>
@@ -93,61 +95,73 @@
             </div>
 
         </div>
+    
 
         <section>
             <h1 class="title">Registrate</h1>
 
             <form id="form" method="POST" action="/submit-form">
                 <div class="input-control">
-                    <input type="text" placeholder="Your name" id="username" name="nombres" />
+                    <label for="nombre">Nombre*</label>
+                    <input type="text" id="nombres" name="nombres" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <small>Error message</small>
                 </div>
             
                 <div class="input-control">
-                    <input type="text" placeholder="Your last name" id="Lastname" name="apellidos" />
+                    <label for="apellido">Apellido*</label>
+                    <input type="text" id="apellidos" name="apellidos" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+
+                <div class="input-control">
+                    <label for="direccion">Dirección*</label>
+                    <input type="text" id="direccion" name="direccion" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <small>Error message</small>
                 </div>
             
                 <div class="input-control">
-                    <input type="text" placeholder="phone" id="phone" name="telefono" />
+                    <label for="telefono">Telefono*</label>
+                    <input type="text" id="telefono" name="telefono" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <small>Error message</small>
                 </div>
             
                 <div class="input-control">
-                    <input type="email" placeholder="info@email.com" id="email" name="correo" />
+                    <label for="correo">Email*</label>
+                    <input type="email" placeholder="info@email.com" id="correo" name="correo" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <small>Error message</small>
                 </div>
             
                 <div class="input-control">
-                    <select name="seleccion_objetos" id="donation">
-                        <option value="" disabled selected>Selecciona una opción</option>
+                    <select name="seleccion_objetos" id="seleccion_objetos">
+                        <option value="" disabled selected>¿Qué deseas donar?</option>
                         <option value="Alimentos">Alimentos</option>
                         <option value="Ropa">Ropa</option>
-                        <option value="Electrodomesticos">Electrodomésticos</option>
+                        <option value="Electrodomesticos">Recursos Tecnologicos</option>
                         <option value="Utiles Escolares">Útiles Escolares</option>
+                        <option value="otros">Otros</option>
                     </select>
                     <small>Error message</small>
                 </div>
             
                 <div>
-                    <textarea id="comments" name="comentario" rows="4" cols="45" placeholder="Escribe tus comentarios aquí"></textarea>
+                    <textarea id="comentario" name="comentario" rows="4" cols="45" placeholder="Escribe tus comentarios aquí"></textarea>
                 </div>
             
-                <button type="submit">Enviar</button>
+                <button type="submit">Enviar </button>
             </form>
             
-            
-
             <div class="message hidden">
-                <h1>Registro exitoso!🎉</h1>
+                <h1>Gracias por tu donación, nos pondremos en contacto contigo pronto!🎉</h1>
             </div>
 
         </section>
@@ -210,6 +224,7 @@
     <script src="/public/js/dinamic/Dona_CubeEffect.js"></script>
     <script src="/public/js/static/donaciones.js"></script>
     <script src="/public/js/dinamic/menu.js"></script>
+    <script src="/public/js/static/caja_comentarios.js"></script>
 </body>
 
 </html>
