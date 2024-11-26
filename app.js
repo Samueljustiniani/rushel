@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 const path = require('path');
 const app = express();
 const fs = require('fs');
-const ip = 'localhost';
+const ip = '3.227.119.32';
 const port = 3000;
 
 // Importamos CORS
@@ -72,6 +72,12 @@ app.get('/evento', async (req, res) => {
 
 
 //comentarios del producto -----------------------------------------------------------------------------------------------
+
+const connection = require('./public/js/static/conexion'); // Asegúrate de que el archivo 'database.js' esté correctamente configurado
+
+// Middleware para parsear datos JSON y archivos estáticos
+app.use(bodyParser.json());
+app.use(express.static('public')); // Carpeta con archivos estáticos
 
 // Ruta para obtener comentarios y sus respuestas
 app.get('/comments', (req, res) => {
@@ -143,6 +149,8 @@ app.post('/submit', (req, res) => {
         }
     );
 });
+
+
 
 
 // Página principal
