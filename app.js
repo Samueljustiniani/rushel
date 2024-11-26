@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const connection = require('./conexion'); // Asegúrate de que el archivo 'database.js' esté correctamente configurado
-const path = require('path'); 
+
 const app = express();
 const port = 3000;
 
@@ -79,14 +79,6 @@ app.post('/submit', (req, res) => {
         }
     );
 });
-
-// Página principal
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-
-app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Iniciar servidor
 app.listen(port, () => {
