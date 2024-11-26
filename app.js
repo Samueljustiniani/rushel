@@ -72,8 +72,6 @@ app.get('/evento', async (req, res) => {
 
 
 //comentarios del producto -----------------------------------------------------------------------------------------------
-const express = require('express');
-const bodyParser = require('body-parser');
 const connection = require('./conexion');
 
 app.use(bodyParser.json()); // Middleware para parsear JSON
