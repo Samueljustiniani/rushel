@@ -1,120 +1,67 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const commentForm = document.getElementById('commentForm');
-    const commentsList = document.getElementById('commentsList');
+const form = document.getElementById('commentForm');
+const commentsList = document.getElementById('commentsList');
 
-    // Función para obtener los comentarios desde el servidor
-    function fetchComments() {
-        fetch('/comments')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // Para depurar la respuesta
-                displayComments(data); // Mostrar los comentarios desde el servidor
-            })
-            .catch(error => {
-                console.error('Error al cargar los comentarios:', error);
-            });
+// Enviar comentario
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const comentario = document.getElementById('comentario').value;
+
+    const response = await fetch('/add-comment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, comentario })
+    });
+
+    if (response.ok) {
+        form.reset();
+        loadComments(); // Recargar comentarios después de enviar
+    } else {
+        alert('Error al agregar el comentario.');
     }
+});
 
-    // Función para crear los elementos de comentario
-    function displayComments(comentarios) {
-        commentsList.innerHTML = ''; // Limpiar la lista de comentarios
-        comentarios.forEach(comment => {
-            const commentItem = document.createElement('li');
-            commentItem.classList.add('comment-item');
+// Cargar comentarios
+async function loadComments() {
+    const response = await fetch('/get-comments');
+    const data = await response.json();
 
-            const commentHeader = document.createElement('div');
-            commentHeader.classList.add('comment-profile');
+    commentsList.innerHTML = '';
 
-            // Imagen de perfil
-            const profilePic = document.createElement('div');
-            profilePic.classList.add('profile-pic');
-            profilePic.style.backgroundImage = "url('/img/perfil.png')"; // Cambiar por la ruta correcta de la imagen
+    // Agrupar comentarios y respuestas
+    const comments = {};
+    data.forEach(row => {
+        const { comentario_id, comentario_nombre, comentario, comentario_fecha, respuesta_nombre, respuesta } = row;
 
-            // Detalles del comentario (nombre y texto del comentario)
-            const commentDetails = document.createElement('div');
-            commentDetails.classList.add('comment-details');
-            commentDetails.innerHTML = `<strong>${comment.nombre}</strong>`; // Nombre del autor
-
-            const commentText = document.createElement('p');
-            commentText.classList.add('comment-text');
-            commentText.textContent = comment.comentario;
-
-            // Botón "Ver respuestas"
-            const viewRepliesBtn = document.createElement('button');
-            viewRepliesBtn.classList.add('view-replies-btn');
-            viewRepliesBtn.textContent = `Ver respuestas (${comment.replies.length})`;
-            viewRepliesBtn.addEventListener('click', function () {
-                repliesContainer.classList.toggle('hidden');
-            });
-
-            // Contenedor de respuestas (inicialmente oculto)
-            const repliesContainer = document.createElement('div');
-            repliesContainer.classList.add('replies', 'hidden');
-
-            // Crear las respuestas
-            comment.replies.forEach(reply => {
-                const replyItem = document.createElement('div');
-                replyItem.classList.add('reply-item');
-                replyItem.innerHTML = `<div class="reply-profile">
-                    <div class="profile-pic"></div>
-                    <div class="reply-details">
-                        <strong>${reply.nombre}</strong>
-                        <p>${reply.respuesta}</p>
-                    </div>
-                </div>`;
-                repliesContainer.appendChild(replyItem);
-            });
-
-            // Construir el comentario
-            commentItem.appendChild(commentHeader);
-            commentHeader.appendChild(profilePic);
-            commentItem.appendChild(commentDetails);
-            commentItem.appendChild(commentText);
-            commentItem.appendChild(viewRepliesBtn);
-            commentItem.appendChild(repliesContainer);
-
-            // Añadir comentario a la lista
-            commentsList.appendChild(commentItem);
-        });
-    }
-
-    // Manejar el envío de un nuevo comentario
-    commentForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevenir el comportamiento por defecto (recargar la página)
-        const nameInput = document.getElementById('nombre');
-        const commentInput = document.getElementById('comentario');
-
-        if (nameInput.value && commentInput.value) {
-            const newComment = {
-                nombre: nameInput.value, // Asegúrate de que el campo sea "nombre"
-                comentario: commentInput.value // Asegúrate de que el campo sea "comentario"
+        if (!comments[comentario_id]) {
+            comments[comentario_id] = {
+                nombre: comentario_nombre,
+                texto: comentario,
+                fecha: comentario_fecha,
+                respuestas: []
             };
+        }
 
-            fetch('/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newComment)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    fetchComments(); // Recargar los comentarios
-                    nameInput.value = ''; // Limpiar el campo de nombre
-                    commentInput.value = ''; // Limpiar el campo de comentario
-                } else {
-                    alert(data.message); // Mostrar mensaje de error
-                }
-            })
-            .catch(error => {
-                console.error('Error al enviar el comentario:', error);
-            });
-        } else {
-            alert('Por favor, ingrese un nombre y un comentario.');
+        if (respuesta_nombre && respuesta) {
+            comments[comentario_id].respuestas.push({ nombre: respuesta_nombre, texto: respuesta });
         }
     });
 
-    // Inicializar la lista de comentarios
-    fetchComments();  // Cargar los comentarios al cargar la página
-});
+    // Renderizar comentarios
+    for (const id in comments) {
+        const comment = comments[id];
+        const commentElement = document.createElement('li');
+
+        commentElement.innerHTML = `
+                <strong>${comment.nombre}</strong> (${comment.fecha}): ${comment.texto}
+                <ul>
+                    ${comment.respuestas.map(r => `<li><em>${r.nombre}</em>: ${r.texto}</li>`).join('')}
+                </ul>
+            `;
+        commentsList.appendChild(commentElement);
+    }
+}
+
+// Cargar comentarios al inicio
+document.addEventListener('DOMContentLoaded', loadComments);
