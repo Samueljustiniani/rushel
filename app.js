@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 const path = require('path');
 const app = express();
 const fs = require('fs');
-const ip = 'localhost';
+const ip = 'ec2-3-222-250-196.compute-1.amazonaws.com';
 const port = 3000;
 
 // Importamos CORS
@@ -19,7 +19,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Configuración de conexión a MySQL con un pool
 let pool = mysql.createPool({
-    host: "ods1.c9svexml9zrk.us-east-1.rds.amazonaws.com",
+    host: "finalapobreza.c920g66kq4od.us-east-1.rds.amazonaws.com",
     database: "ods",
     user: "admin",
     password: "samuel123",
