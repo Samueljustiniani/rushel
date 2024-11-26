@@ -85,6 +85,9 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+
 // Iniciar servidor
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://3.222.250.196:${port}`);
