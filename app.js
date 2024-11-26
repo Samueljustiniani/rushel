@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const connection = require('./conexion'); // Asegúrate de que el archivo 'database.js' esté correctamente configurado
+const connection = require('./database'); // Asegúrate de que el archivo 'database.js' esté correctamente configurado
 
 const app = express();
 const port = 3000;
@@ -82,5 +82,5 @@ app.post('/submit', (req, res) => {
 
 // Iniciar servidor
 app.listen(port, () => {
-    console.log(`Servidor corriendo en http://3.227.119.32:${port}`);
+    console.log(`Servidor corriendo en http://3.222.250.196:${port}`);
 });
